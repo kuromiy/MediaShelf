@@ -1,0 +1,12 @@
+plugins {
+  id 'java'
+}
+
+dependencies {
+	// mediashelf-domain
+	compileOnly project(':mediashelf-domain')
+
+	// lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
