@@ -2,13 +2,17 @@ package com.krmy.mediashelf.domain.illust;
 
 import com.krmy.mediashelf.domain.exception.DomainException;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * イラストID
  * @author Ituki Kuromiya
  *
  */
+@EqualsAndHashCode(of= {"value"})
+@ToString
 public final class IllustId {
 	@Getter
 	private String value;

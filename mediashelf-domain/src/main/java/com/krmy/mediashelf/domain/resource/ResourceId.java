@@ -2,13 +2,17 @@ package com.krmy.mediashelf.domain.resource;
 
 import com.krmy.mediashelf.domain.exception.DomainException;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * リソースID
  * @author Ituki Kuromiya
  *
  */
+@EqualsAndHashCode(of= {"value"})
+@ToString
 public final class ResourceId {
 	@Getter
 	private String value;

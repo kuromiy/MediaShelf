@@ -2,14 +2,17 @@ package com.krmy.mediashelf.domain.tag;
 
 import com.krmy.mediashelf.domain.exception.DomainException;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * タグ名
- * TODO 同一性等のValueObjectとしてのメソッドを実装する。
  * @author Ituki Kuromiya
  *
  */
+@EqualsAndHashCode(of= {"value"})
+@ToString
 public final class TagName {
 	@Getter
 	private String value;
