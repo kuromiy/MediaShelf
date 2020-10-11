@@ -1,7 +1,9 @@
 plugins {
-  id 'java-library'
+  id 'java'
 }
 
-repositories {
-  mavenCentral()
+dependencies {
+	// lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
