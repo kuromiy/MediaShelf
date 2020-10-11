@@ -1,0 +1,1 @@
+package com.krmy.mediashelf.usecase.action.illust.register;
