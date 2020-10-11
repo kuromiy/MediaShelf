@@ -1,12 +1,15 @@
 package com.krmy.mediashelf.domain.illust;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.krmy.mediashelf.domain.exception.DomainException;
 import com.krmy.mediashelf.domain.resource.Resource;
 import com.krmy.mediashelf.domain.tag.Tag;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 /**
  * イラスト
@@ -14,12 +17,16 @@ import lombok.Getter;
  *
  */
 @Getter
+@EqualsAndHashCode(of= {"illustId"})
+@ToString
 public final class Illust {
 	private IllustId illustId;
 	private IllustName illustName;
 	private IllustDescription illustDescription;
 	private Resource resource;
 	private List<Tag> tagList;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 
 	public Illust(IllustId illustId, IllustName illustName, IllustDescription illustDescription, Resource resource, List<Tag> tagList) {
 		if (illustId == null) throw new DomainException("イラストIDは必須です。");

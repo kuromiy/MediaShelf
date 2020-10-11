@@ -1,16 +1,26 @@
 package com.krmy.mediashelf.domain.tag;
 
+import java.time.LocalDateTime;
+
 import com.krmy.mediashelf.domain.exception.DomainException;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * タグ
- * TODO 作成日・更新日等を実装する。
  * @author Ituki Kuromiya
  *
  */
+@Getter
+@EqualsAndHashCode(of= {"tagId"})
+@ToString
 public final class Tag {
 	private TagId tagId;
 	private TagName tagName;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 
 	private Tag(TagId tagId, TagName tagName) {
 		if (tagId == null) throw new DomainException("タグIDは必須です。");
@@ -22,13 +32,5 @@ public final class Tag {
 
 	protected static Tag create(TagId tagId, TagName tagName) {
 		return new Tag(tagId, tagName);
-	}
-
-	public String getTagId() {
-		return this.tagId.getValue();
-	}
-
-	public String getTagName() {
-		return this.tagName.getValue();
 	}
 }
