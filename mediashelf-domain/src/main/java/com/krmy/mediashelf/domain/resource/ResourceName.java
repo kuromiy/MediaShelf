@@ -19,7 +19,7 @@ public final class ResourceName {
 
 	public ResourceName(String value) {
 		if (value == null) throw new DomainException("リソース名の値は必須です。");
-		if (value.length() < 0) throw new DomainException("リソース名の値は1字以上です。");
+		if (value.length() < 1) throw new DomainException("リソース名の値は1字以上です。");
 
 		this.value = value;
 	}
