@@ -11,3 +11,4 @@ rootProject.name = 'media-shelf'
 
 include 'mediashelf-domain'
 include 'mediashelf-usecase'
+include 'mediashelf-port'

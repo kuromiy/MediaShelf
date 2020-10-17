@@ -1,0 +1,30 @@
+plugins {
+  id 'java'
+}
+
+dependencies {
+	// mediashelf-domain
+	compileOnly project(':mediashelf-usecase')
+	testImplementation project(':mediashelf-usecase')
+
+	// lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+	// vavr
+	compile group: 'io.vavr', name: 'vavr', version: '0.10.0'
+
+	// junit5
+	testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
+
+	// mockito3
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.5.13'
+	testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.5.13'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
