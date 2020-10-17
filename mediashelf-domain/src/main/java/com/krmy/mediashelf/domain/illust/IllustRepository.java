@@ -18,7 +18,7 @@ public interface IllustRepository {
 	 * @param illust イラスト
 	 * @return 処理結果
 	 */
-	public int register(Illust illust);
+	public Illust register(Illust illust);
 
 	/**
 	 * イラストIDを生成する。

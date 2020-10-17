@@ -10,6 +10,8 @@ import com.krmy.mediashelf.domain.resource.ResourceId;
 import com.krmy.mediashelf.domain.resource.ResourceName;
 import com.krmy.mediashelf.domain.resource.ResourcePath;
 import com.krmy.mediashelf.domain.tag.TagList;
+import com.krmy.mediashelf.usecase.converter.IllustConverter;
+import com.krmy.mediashelf.usecase.dto.IllustDto;
 import com.krmy.mediashelf.usecase.error.UseCaseError;
 
 import io.vavr.control.Either;
@@ -49,10 +51,11 @@ public final class IllustRegisterAction implements IllustRegisterUseCase {
 		Illust illust = new Illust(illustId, illustName, illustDescription, resource, tagList);
 
 		// 6. イラスト登録
-		int result = this.illustRepository.register(illust);
-		if (result == 0) return Either.left(UseCaseError.UCE0101);
+		Illust registeredIllust= this.illustRepository.register(illust);
+		if (registeredIllust == null) return Either.left(UseCaseError.UCE0101);
 
-		IllustRegisterOutput output = new IllustRegisterOutput();
+		IllustDto illustDto = IllustConverter.convert(registeredIllust);
+		IllustRegisterOutput output = new IllustRegisterOutput(illustDto);
 		return Either.right(output);
 	}
 }

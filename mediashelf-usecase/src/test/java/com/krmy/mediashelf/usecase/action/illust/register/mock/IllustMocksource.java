@@ -12,9 +12,8 @@ import com.krmy.mediashelf.domain.resource.ResourcePath;
 
 public class IllustMocksource implements IllustRepository {
 	@Override
-	public int register(Illust illust) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 1;
+	public Illust register(Illust illust) {
+		return illust;
 	}
 
 	@Override

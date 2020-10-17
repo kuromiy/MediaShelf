@@ -5,16 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -30,7 +27,37 @@ import io.vavr.control.Either;
 public class IllustRegisterUseCaseTest {
 	@Nested
 	@DisplayName("正常系テスト")
-	public class NormalTest {}
+	public class NormalTest {
+		private IllustRegisterUseCase useCase;
+		private IllustRepository spyIllustRepository;
+
+		/**
+		 * 初期化処理
+		 */
+		@BeforeEach
+		public void initialize() {
+			this.spyIllustRepository = new IllustMocksource();
+			this.useCase = new IllustRegisterAction(this.spyIllustRepository);
+		}
+
+		@DisplayName("正常")
+		@Test
+		public void testcase001() {
+			// 1. 準備
+			String illustName = "テスト";
+			String illustDescription = "";
+			List<String> tagList = Arrays.asList("test001", "test002");
+			String resourceName = "name";
+			InputStream resourceInputStream = null;
+
+			// 2. 実行
+			IllustRegisterInput input = new IllustRegisterInput(illustName, illustDescription, tagList, resourceName, resourceInputStream);
+			Either<UseCaseError, IllustRegisterOutput> result = this.useCase.handle(input);
+
+			// 3. 検証
+			assertTrue(result.isRight());
+		}
+	}
 
 	@Nested
 	@DisplayName("異常系テスト")
@@ -52,7 +79,10 @@ public class IllustRegisterUseCaseTest {
 		@ParameterizedTest(name = "{0}")
 		@MethodSource("com.krmy.mediashelf.usecase.action.illust.register.provider.MyProvider#provide")
 		public void test(String title, IllustRegisterInput input, String errorMessage) {
+			// 1. 実行
 			Throwable exception = assertThrows(DomainException.class, () -> this.useCase.handle(input));
+
+			// 2. 検証
 			assertEquals(errorMessage, exception.getMessage());
 		}
 
@@ -66,7 +96,7 @@ public class IllustRegisterUseCaseTest {
 			String resourceName = "name";
 			InputStream resourceInputStream = null;
 
-			Mockito.when(this.spyIllustRepository.register(Mockito.any())).thenReturn(0);
+			Mockito.when(this.spyIllustRepository.register(Mockito.any())).thenReturn(null);
 
 			// 2. 実行
 			IllustRegisterInput input = new IllustRegisterInput(illustName, illustDescription, tagList, resourceName, resourceInputStream);
