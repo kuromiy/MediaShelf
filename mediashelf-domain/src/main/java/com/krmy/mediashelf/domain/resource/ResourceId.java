@@ -19,7 +19,7 @@ public final class ResourceId {
 
 	public ResourceId(String value) {
 		if (value == null) throw new DomainException("リソースIDの値は必須です。");
-		if (value.length() < 0) throw new DomainException("リソースIDの値は0字以上です。");
+		if (value.length() < 1) throw new DomainException("リソースIDの値は0字以上です。");
 
 		this.value = value;
 	}

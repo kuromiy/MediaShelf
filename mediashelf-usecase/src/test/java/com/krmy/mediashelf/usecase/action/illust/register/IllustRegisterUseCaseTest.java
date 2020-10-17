@@ -16,9 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.krmy.mediashelf.domain.exception.DomainException;
 import com.krmy.mediashelf.domain.illust.IllustRepository;
-import com.krmy.mediashelf.domain.tag.TagId;
 import com.krmy.mediashelf.usecase.action.illust.register.mock.IllustMocksource;
-import com.krmy.mediashelf.usecase.action.illust.register.mock.TagMocksource;
 import com.krmy.mediashelf.usecase.error.UseCaseError;
 
 import io.vavr.control.Either;
@@ -42,12 +40,7 @@ public class IllustRegisterUseCaseTest {
 		@BeforeEach
 		public void initialize() {
 			this.spyIllustRepository = Mockito.spy(IllustMocksource.class);
-			this.useCase = new IllustRegisterAction(this.spyIllustRepository, new TagMocksource());
-		}
-
-		@Test
-		public void test() {
-			TagId tagId = new TagId("1");
+			this.useCase = new IllustRegisterAction(this.spyIllustRepository);
 		}
 
 		/**
@@ -127,7 +120,7 @@ public class IllustRegisterUseCaseTest {
 			String illustName = "テスト";
 			String illustDescription = "";
 			List<String> tagList = null;
-			String resourceName = "";
+			String resourceName = "test";
 			InputStream resourceInputStream = null;
 
 			// 2. 実行
@@ -149,7 +142,7 @@ public class IllustRegisterUseCaseTest {
 			String illustName = "テスト";
 			String illustDescription = "";
 			List<String> tagList = Arrays.asList();
-			String resourceName = "";
+			String resourceName = "test";
 			InputStream resourceInputStream = null;
 
 			// 2. 実行
@@ -171,7 +164,7 @@ public class IllustRegisterUseCaseTest {
 			String illustName = "テスト";
 			String illustDescription = "";
 			List<String> tagList = Arrays.asList("test01","test02","test03","test04","test05","test06","test07","test08","test09","test10","test11");
-			String resourceName = "";
+			String resourceName = "test";
 			InputStream resourceInputStream = null;
 
 			// 2. 実行
@@ -240,7 +233,7 @@ public class IllustRegisterUseCaseTest {
 			String resourceName = "name";
 			InputStream resourceInputStream = null;
 
-			//Mockito.when(this.spyIllustRepository.register(Mockito.any())).thenReturn(0);
+			Mockito.when(this.spyIllustRepository.register(Mockito.any())).thenReturn(0);
 
 			// 2. 実行
 			IllustRegisterInput input = new IllustRegisterInput(illustName, illustDescription, tagList, resourceName, resourceInputStream);

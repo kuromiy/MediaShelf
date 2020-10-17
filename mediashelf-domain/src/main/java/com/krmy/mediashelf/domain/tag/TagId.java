@@ -19,7 +19,7 @@ public final class TagId {
 
 	public TagId(String value) {
 		if (value == null) throw new DomainException("タグIDの値は必須です。");
-		if (value.length() < 0) throw new DomainException("タグIDの値は0字以上です。");
+		if (value.length() < 1) throw new DomainException("タグIDの値は0字以上です。");
 
 		this.value = value;
 	}

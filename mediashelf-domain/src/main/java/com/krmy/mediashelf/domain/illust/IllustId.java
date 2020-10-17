@@ -19,7 +19,7 @@ public final class IllustId {
 
 	public IllustId(String value) {
 		if (value == null) throw new DomainException("イラストIDの値は必須です。");
-		if (value.length() < 0) throw new DomainException("イラストIDの値は1字以上です。");
+		if (value.length() < 1) throw new DomainException("イラストIDの値は1字以上です。");
 
 		this.value = value;
 	}

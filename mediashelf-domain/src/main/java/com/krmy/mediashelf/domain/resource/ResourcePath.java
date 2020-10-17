@@ -19,7 +19,7 @@ public final class ResourcePath {
 
 	public ResourcePath(String value) {
 		if (value == null) throw new DomainException("リソースパスの値は必須です。");
-		if (value.length() < 0) throw new DomainException("リソースパスの値は1字以上です。");
+		if (value.length() < 1) throw new DomainException("リソースパスの値は1字以上です。");
 
 		this.value = value;
 	}

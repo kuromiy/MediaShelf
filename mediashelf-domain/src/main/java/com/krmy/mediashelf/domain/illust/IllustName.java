@@ -19,7 +19,7 @@ public final class IllustName {
 
 	public IllustName(String value) {
 		if (value == null) throw new DomainException("イラスト名の値は必須です。");
-		if (value.length() < 0) throw new DomainException("イラスト名の値は1字以上です。");
+		if (value.length() < 1) throw new DomainException("イラスト名の値は1字以上です。");
 
 		this.value = value;
 	}
